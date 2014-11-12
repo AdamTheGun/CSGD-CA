@@ -37,6 +37,7 @@ namespace GameStateManagement
         SpriteBatch spriteBatch;
         SpriteFont font;
         Texture2D blankTexture;
+        Rectangle windowRect;
 
         bool isInitialized;
 
@@ -78,6 +79,11 @@ namespace GameStateManagement
             set { traceEnabled = value; }
         }
 
+        public Rectangle WindowRect 
+        {
+            get { return windowRect; }
+            set { windowRect = value; }
+        }
 
         #endregion
 

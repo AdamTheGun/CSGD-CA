@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\background.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\background.xnb</Output>
       <Time>2010-09-15T13:43:52+08:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\blank.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\blank.xnb</Output>
       <Time>2010-09-15T13:43:52+08:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\gradient.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\gradient.xnb</Output>
       <Time>2010-09-15T13:43:52+08:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\Checker.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\Checker.xnb</Output>
       <Time>2014-10-23T09:53:10.7521219+08:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\ShipDiffuse.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\ShipDiffuse.xnb</Output>
       <Time>2014-10-23T09:53:16.7521303+08:00</Time>
     </Item>
     <Item>
@@ -52,7 +52,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\menufont.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\menufont.xnb</Output>
       <Time>2010-09-15T13:43:52+08:00</Time>
     </Item>
     <Item>
@@ -61,7 +61,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\gamefont.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\gamefont.xnb</Output>
       <Time>2014-10-23T10:36:27.9681153+08:00</Time>
     </Item>
     <Item>
@@ -70,13 +70,13 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\Ground.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\Ground.xnb</Output>
       <Time>2014-10-23T09:53:16.705089+08:00</Time>
       <Dependency>
         <Key>obj\Xbox 360\Debug\Ground_0.xml</Key>
-        <Value>2014-10-27T17:41:07.2195472+08:00</Value>
+        <Value>2014-10-30T10:00:34.9505569+08:00</Value>
       </Dependency>
-      <Request>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\Checker_0.xnb</Request>
+      <Request>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\Checker_0.xnb</Request>
     </Item>
     <Item>
       <Source>Ship.fbx</Source>
@@ -84,13 +84,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\Ship.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\Ship.xnb</Output>
       <Time>2014-10-23T09:53:16.7321043+08:00</Time>
       <Dependency>
         <Key>obj\Xbox 360\Debug\Ship_0.xml</Key>
-        <Value>2014-10-27T17:41:08.1591745+08:00</Value>
+        <Value>2014-10-30T10:00:35.8831768+08:00</Value>
       </Dependency>
-      <Request>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\ShipDiffuse_0.xnb</Request>
+      <Request>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\ShipDiffuse_0.xnb</Request>
     </Item>
     <Item>
       <Source>Ground.x</Source>
@@ -112,7 +112,7 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\Checker_0.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\Checker_0.xnb</Output>
       <Time>2014-10-23T09:53:10.7521219+08:00</Time>
     </Item>
     <Item>
@@ -135,26 +135,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\ShipDiffuse_0.xnb</Output>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\ShipDiffuse_0.xnb</Output>
       <Time>2014-10-23T09:53:16.7521303+08:00</Time>
-    </Item>
-    <Item>
-      <Source>Untitled-2.png</Source>
-      <Name>Untitled-2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\Untitled-2.xnb</Output>
-      <Time>2014-04-22T12:13:08+08:00</Time>
-    </Item>
-    <Item>
-      <Source>FrameFont.spritefont</Source>
-      <Name>FrameFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\FrameFont.xnb</Output>
-      <Time>2014-11-03T16:27:45.4830843+08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -163,10 +145,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>true</CompressContent>
-      <RootDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\Content\obj\Xbox 360\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample\GameStateManagementSample\bin\Xbox 360\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\Content\obj\Xbox 360\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\GameStateManagementExample - Copy\GameStateManagementSample\bin\Xbox 360\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

@@ -49,20 +49,13 @@ namespace GameStateManagement
             Content.RootDirectory = "Content";
 
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 853;
+            graphics.PreferredBackBufferHeight = 480;
 
-#if XBOX360
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-#else 
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
-#endif
             // Create the screen manager component.
             screenManager = new ScreenManager(this);
-            graphics.SynchronizeWithVerticalRetrace = false;
-            
 
-
+            screenManager.WindowRect = new Rectangle(0,0,graphics.PreferredBackBufferWidth,graphics.PreferredBackBufferHeight);
             Components.Add(screenManager);
 
             // Activate the first screens.
@@ -94,7 +87,7 @@ namespace GameStateManagement
         protected override void Draw(GameTime gameTime)
         {
             graphics.GraphicsDevice.Clear(Color.Black);
-
+            
             // The real drawing happens inside the screen manager component.
             base.Draw(gameTime);
         }
