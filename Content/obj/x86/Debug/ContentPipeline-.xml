@@ -91,6 +91,15 @@
       <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\x86\Debug\Content\gamefont.xnb</Output>
       <Time>2014-10-23T10:36:27.9681153+08:00</Time>
     </Item>
+    <Item>
+      <Source>BallPop.png</Source>
+      <Name>BallPop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\x86\Debug\Content\BallPop.xnb</Output>
+      <Time>2014-11-13T15:35:16.0695239+08:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID Null="true" />

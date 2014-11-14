@@ -8,6 +8,7 @@ Content\GameBackground.xnb
 Content\Needle.xnb
 Content\menufont.xnb
 Content\gamefont.xnb
+Content\BallPop.xnb
 Content\LifeOfBalls.xgs
 Content\Wave Bank.xwb
 Content\Sound Bank.xsb

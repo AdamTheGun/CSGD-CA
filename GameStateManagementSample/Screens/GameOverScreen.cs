@@ -33,7 +33,7 @@ namespace GameStateManagement
             MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
             
             // Hook up menu event handlers.
-            restartGameMenuEntry.Selected += OnRestart(ControllingPlayer);
+            restartGameMenuEntry.Selected += OnRestart;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
@@ -76,7 +76,7 @@ namespace GameStateManagement
         void OnRestart(object sender, PlayerIndexEventArgs e)
         {
 
-            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new GameplayScreen());
+            LoadingScreen.Load(ScreenManager, false, ControllingPlayer, new BackgroundScreen(), new GameplayScreen());
             ExitScreen();
         }
 

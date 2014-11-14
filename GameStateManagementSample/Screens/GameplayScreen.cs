@@ -32,6 +32,8 @@ namespace GameStateManagement
         SpriteFont spriteFont;
         Texture2D TGrassBlock;
         Texture2D TBall;
+        Texture2D TBaseBall;
+        Texture2D TBallPop;
         Texture2D GameBack;
         Texture2D EnemyNeedle;
 
@@ -59,6 +61,7 @@ namespace GameStateManagement
         int ScreenWidth;
         int ScreenHeight;
 
+        bool isGameOver = false;
 
         AudioEngine audioEngine;
         SoundBank soundBank;
@@ -93,9 +96,11 @@ namespace GameStateManagement
 
             spriteFont = content.Load<SpriteFont>("gamefont");
             TGrassBlock = content.Load<Texture2D>("Grass-Block");
-            TBall = content.Load<Texture2D>("Ball");
+            TBaseBall = content.Load<Texture2D>("Ball");
+            TBallPop = content.Load<Texture2D>("BallPop");
             GameBack = content.Load<Texture2D>("GameBackground");
             EnemyNeedle = content.Load<Texture2D>("Needle");
+            TBall = TBaseBall;
 
             audioEngine = new AudioEngine("Content\\LifeOfBalls.xgs");
             waveBank = new WaveBank(audioEngine, "Content\\Wave Bank.xwb");
@@ -177,6 +182,10 @@ namespace GameStateManagement
                 }
                 if (gameReady) 
                 {
+                    if (isGameOver) 
+                    {
+                        ScreenManager.AddScreen(new GameOverScreen(), PlayerIndex.One);
+                    }
                     rotationValue += 2.0f * deltaTime;
                     PlayerBallPos.Y += (int)BallMovementSpeed;
                     if ((PlayerBallPos.Y+TBall.Height/4) >= GroundBlockPos[0].Y)
@@ -218,7 +227,9 @@ namespace GameStateManagement
                         }
                         if (NeedlePos[i].Intersects(PlayerBallPos))
                         {
-                            ScreenManager.AddScreen(new GameOverScreen(), PlayerIndex.One);
+                            soundBank.GetCue("PopSound").Play();
+                            isGameOver = true;
+                            TBall = TBallPop;
                         }
                     }
 
