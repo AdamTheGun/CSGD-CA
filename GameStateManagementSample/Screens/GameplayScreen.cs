@@ -30,33 +30,50 @@ namespace GameStateManagement
 
         ContentManager content;
         SpriteFont spriteFont;
+        SpriteFont teleFont;
         Texture2D TGrassBlock;
-        Texture2D TBall;
+        Texture2D[] TBall = new Texture2D[4];
         Texture2D TBaseBall;
         Texture2D TBallPop;
+        Texture2D TLadyBall;
         Texture2D GameBack;
         Texture2D EnemyNeedle;
 
         Random random = new Random();
 
-        Vector2[] GroundBlockPos =  new Vector2[10];
+        Vector2[] GroundBlockPos =  new Vector2[30];
         Vector2[] BackgroundPos = new Vector2[3];
-        Rectangle[] NeedlePos = new Rectangle[4];
+        Vector2 Minus1Pos;
+        Rectangle[] NeedlePos = new Rectangle[5];
 
         Vector2 BlockSpawnLocation;
         Rectangle PlayerBallPos;
+        Vector2 LadyBallPos;
+
+        string LivesText = "Lives || ";
 
         int GameSpeed;
         float BallMovementSpeed;
         int jumpCount = 0;
         int jumpCounter = 0;
         float soundCounter = 0;
+        int LivesCounter = 3;
+        int HitTimeout = 0;
+        bool hitCheck = false;
+        bool isSound;
+        bool gameWin = false;
+        float gameCounter;
+        float fadeCounter;
 
         int WidthRatio,HeightRatio;
         float rotationValue = 0.0f;
-
+        string time;
         bool gameReady = false;
         float deltaTime;
+
+        float fpsCounter;
+        string fpsString;
+        string objectiveString = "SURVIVE LIFE FOR 2 MINUTES";
 
         int ScreenWidth;
         int ScreenHeight;
@@ -66,6 +83,8 @@ namespace GameStateManagement
         AudioEngine audioEngine;
         SoundBank soundBank;
         WaveBank waveBank;
+
+        Cue MusicCue;
 
         #endregion
 
@@ -93,19 +112,32 @@ namespace GameStateManagement
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-
+            isSound = ScreenManager.IsSound;
+            
             spriteFont = content.Load<SpriteFont>("gamefont");
+            teleFont = content.Load<SpriteFont>("TeleSpriteFont");
             TGrassBlock = content.Load<Texture2D>("Grass-Block");
             TBaseBall = content.Load<Texture2D>("Ball");
             TBallPop = content.Load<Texture2D>("BallPop");
             GameBack = content.Load<Texture2D>("GameBackground");
             EnemyNeedle = content.Load<Texture2D>("Needle");
-            TBall = TBaseBall;
+            TLadyBall = content.Load<Texture2D>("Girl_Ball");
 
-            audioEngine = new AudioEngine("Content\\LifeOfBalls.xgs");
-            waveBank = new WaveBank(audioEngine, "Content\\Wave Bank.xwb");
-            soundBank = new SoundBank(audioEngine, "Content\\Sound Bank.xsb");
 
+            TBall[0] = TBaseBall;
+            TBall[1] = TBaseBall;
+            TBall[2] = TBaseBall;
+            TBall[3] = TBaseBall;
+
+            if (isSound)
+            {
+                audioEngine = new AudioEngine("Content\\LifeOfBalls.xgs");
+                waveBank = new WaveBank(audioEngine, "Content\\Wave Bank.xwb");
+                soundBank = new SoundBank(audioEngine, "Content\\Sound Bank.xsb");
+                MusicCue = soundBank.GetCue("Music");
+                MusicCue.Play();
+            }
+            
 
             ScreenWidth = ScreenManager.WindowRect.Right;
             ScreenHeight = ScreenManager.WindowRect.Bottom;
@@ -121,12 +153,13 @@ namespace GameStateManagement
             NeedlePos[1].Y = ((ScreenHeight - TGrassBlock.Height) / 5)*2;
             NeedlePos[2].Y = ((ScreenHeight - TGrassBlock.Height) / 5)*3;
             NeedlePos[3].Y = ((ScreenHeight - TGrassBlock.Height) / 5)*4;
+            NeedlePos[4].Y = ((ScreenHeight - TGrassBlock.Height) / 5) * 5;
 
-
+            fadeCounter = 0.0f;
 
             for (int i = 0; i < NeedlePos.Length; i++) 
             {
-                NeedlePos[i].X = ScreenWidth * (random.Next(2, 5));
+                NeedlePos[i].X = ScreenWidth * (random.Next(2, 6));
                 NeedlePos[i].Width = EnemyNeedle.Width;
                 NeedlePos[i].Height = EnemyNeedle.Height;
             }
@@ -137,11 +170,14 @@ namespace GameStateManagement
                 GroundBlockPos[i].X = BlockSpawnLocation.X;
                 GroundBlockPos[i].Y = BlockSpawnLocation.Y - 100;
             }
-            WidthRatio = (int)(Math.Truncate((float)(ScreenWidth / 8.53)));
-            HeightRatio = (int)(Math.Truncate((float)(ScreenHeight/4.8)));
-            PlayerBallPos = new Rectangle(WidthRatio * 2, HeightRatio * 2,TBall.Width/2,TBall.Height/2);
+            WidthRatio = (int)/*(Math.Truncate(*/(float)(ScreenWidth / 8.53);//);
+            HeightRatio = (int)/*((Math.Truncate(*/(float)(ScreenHeight/4.8);//);
+            PlayerBallPos = new Rectangle(WidthRatio * 2, HeightRatio * 2,TBall[0].Width/2,TBall[0].Height/2);
             GameSpeed = 5;
             BallMovementSpeed = 5;
+
+            Minus1Pos = new Vector2(ScreenWidth / 12 + 50, ScreenHeight / 10 + 30);
+
             // once the load has finished, we use ResetElapsedTime to tell the game's
             // timing mechanism that we have just finished a very long frame, and that
             // it should not try to catch up.
@@ -156,8 +192,6 @@ namespace GameStateManagement
         {
             content.Unload();
         }
-
-
         #endregion
 
         #region Update and Draw
@@ -173,77 +207,179 @@ namespace GameStateManagement
         {
             base.Update(gameTime, otherScreenHasFocus, false);
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (IsActive)
-            {
-                MoveGround();
-                if (GroundBlockPos[0].X < 0) 
+            
+
+                if (IsActive)
                 {
-                    gameReady = true;
-                }
-                if (gameReady) 
-                {
-                    if (isGameOver) 
+                    if (!gameWin) 
                     {
-                        ScreenManager.AddScreen(new GameOverScreen(), PlayerIndex.One);
+                        MoveGround();
                     }
-                    rotationValue += 2.0f * deltaTime;
-                    PlayerBallPos.Y += (int)BallMovementSpeed;
-                    if ((PlayerBallPos.Y+TBall.Height/4) >= GroundBlockPos[0].Y)
+                    if (GroundBlockPos[0].X < 0)
                     {
-                        BallMovementSpeed = 0;
-                        jumpCount = 0;
-                        jumpCounter = 0;
+                        gameReady = true;
                     }
-                    else 
+                    if (gameReady)
                     {
-                        BallMovementSpeed += 0.2f;
-                    }
-                    if (!soundBank.IsInUse)
-                    {
-                        soundBank.GetCue("Music").Play();
-                    }
-                    if (soundCounter >= 5)
-                    {
-                        soundBank.GetCue("Ambience").Play();
-                        soundCounter = 0;
-                    }
-                    soundCounter += 1 * deltaTime;
+                        gameCounter += 1 * deltaTime;
+                        time = "" + gameCounter;
+                        time = String.Format("{0:0.00}", gameCounter);
+                        fpsCounter = 1.0f / deltaTime;
+                        fpsString = String.Format("{0:0.00}", fpsCounter);
 
-                    for (int i = 0; i < BackgroundPos.Length; i++) 
-                    {
-                        BackgroundPos[i].X--;
-                        if (BackgroundPos[i].X <= -ScreenWidth) 
+           
+                        fadeCounter += 1 * deltaTime;
+                        if (isGameOver)
                         {
-                            BackgroundPos[i].X = ScreenWidth;
+                            ScreenManager.AddScreen(new GameOverScreen(), PlayerIndex.One);
+                            ExitScreen();
                         }
-                    }
+                        
+                        
+                        PlayerBallPos.Y += (int)BallMovementSpeed;
 
-                    for (int i = 0; i < NeedlePos.Length; i++) 
-                    {
-                        NeedlePos[i].X-= 10;
-                        if (NeedlePos[i].X <= 0-EnemyNeedle.Width) 
+                        if ((PlayerBallPos.Y + TBall[0].Height / 4) >= GroundBlockPos[0].Y)
                         {
-                            NeedlePos[i].X = ScreenWidth * random.Next(1,5);  
+                            BallMovementSpeed = 0;
+                            jumpCount = 0;
+                            jumpCounter = 0;
                         }
-                        if (NeedlePos[i].Intersects(PlayerBallPos))
+                        else
                         {
-                            soundBank.GetCue("PopSound").Play();
-                            isGameOver = true;
-                            TBall = TBallPop;
+                            BallMovementSpeed += 0.2f;
                         }
-                    }
 
+                        if (isSound)
+                        {
+                            if (isGameOver)
+                            {
+                                MusicCue.Stop(AudioStopOptions.Immediate);
+                            }
+
+                            if (!gameWin)
+                            {
+                                if (soundCounter >= 5)
+                                {
+                                    soundBank.GetCue("Ambience").Play();
+                                    soundCounter = 0;
+                                }
+                            }
+                            soundCounter += 1 * deltaTime;
+                        }
+
+                        if (gameCounter < 12)
+                        {
+                            for (int i = 0; i < BackgroundPos.Length; i++)
+                            {
+                                BackgroundPos[i].X--;
+                                if (BackgroundPos[i].X <= -ScreenWidth)
+                                {
+                                    BackgroundPos[i].X = ScreenWidth;
+                                }
+                            }
+                            rotationValue += 2.0f * deltaTime;
+                            for (int i = 0; i < NeedlePos.Length; i++)
+                            {
+                                NeedlePos[i].X -= 10;
+                                if (NeedlePos[i].X <= 0 - EnemyNeedle.Width)
+                                {
+                                    NeedlePos[i].X = ScreenWidth * random.Next(1, 6);
+                                }
+                                if (NeedlePos[i].Intersects(PlayerBallPos))
+                                {
+                                    if (!hitCheck)
+                                    {
+                                        PlayerHit();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (!gameWin) 
+                            {
+                                soundBank.GetCue("Win").Play();
+                                MusicCue.Stop(AudioStopOptions.Immediate);
+                                gameWin = true;
+                                LadyBallPos = new Vector2(ScreenWidth*2f,ScreenHeight-(TGrassBlock.Height+TLadyBall.Height));
+                            }
+                            
+                            for (int i = 0; i < NeedlePos.Length; i++) 
+                            {
+                                NeedlePos[i].X -= 50;
+                            }
+                            if (LadyBallPos.X >= PlayerBallPos.X + TBaseBall.Width)
+                            {
+                                LadyBallPos.X -= 10;
+                                MoveGround();
+                                rotationValue += 2.0f * deltaTime;
+                                for (int i = 0; i < BackgroundPos.Length; i++)
+                                {
+                                    BackgroundPos[i].X--;
+                                    if (BackgroundPos[i].X <= -ScreenWidth)
+                                    {
+                                        BackgroundPos[i].X = ScreenWidth;
+                                    }
+                                }
+                            }
+                            else 
+                            {
+                                
+                            }
+                        }
+
+
+
+                        if (!hitCheck)
+                        {
+                            if (PlayerBallPos.Y <= -10)
+                            {
+                                PlayerHit();
+                                HitTimeout = -30;
+                            }
+                        }
+                        if (hitCheck)
+                        {
+                            HitTimeout++;
+                            Minus1Pos.Y++;
+                        }
+                        if (HitTimeout >= 100)
+                        {
+                            hitCheck = false;
+                            HitTimeout = 0;
+                            Minus1Pos.X = ScreenWidth / 12 + 50;
+                            Minus1Pos.Y = ScreenHeight / 10 + 30;
+                        }
                         /*if (BallMovementSpeed != 5) 
                         {
                             BallMovementSpeed += 1 *(int)deltaTime;
                         }*/
-                        audioEngine.Update();
+                        if (isSound)
+                        {
+                            audioEngine.Update();
+                        }
+                    }
                 }
-
-            }
-
         }
 
+        void PlayerHit()
+        {
+            TBall[LivesCounter] = TBallPop;
+            LivesCounter--;
+            hitCheck = true;
+            if (isSound)
+            {
+                soundBank.GetCue("Hit").Play();
+            }
+            if (LivesCounter == 0)
+            {
+                if (isSound)
+                {
+                    soundBank.GetCue("PopSound").Play();
+                }
+                isGameOver = true;
+            }
+        }
 
         /// <summary>
         /// Lets the game respond to player input. Unlike the Update method,
@@ -269,38 +405,55 @@ namespace GameStateManagement
 
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
             {
+                MusicCue.Pause();
+                soundBank.GetCue("Ambience").Pause();
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
                 return;
             }
-            else
+            else if (IsActive) 
             {
-                
-            }
-            if ((PlayerBallPos.Y + TBall.Height / 2) >= GroundBlockPos[0].Y)
-            {
-                jumpCounter++;
-                if (jumpCount == 0 && keyboardState.IsKeyDown(Keys.W))
+                if (MusicCue.IsPaused) 
                 {
-                    BallMovementSpeed -= 5;
-                    jumpCount++;
+                    soundBank.GetCue("Ambience").Resume();
+                    MusicCue.Resume();
+                }
+            }
+
+
+            if ((PlayerBallPos.Y + TBall[0].Height / 2) >= GroundBlockPos[0].Y)
+            {
+                if (!gameWin)
+                {
+                    jumpCounter++;
+                    if (jumpCount == 0 && keyboardState.IsKeyDown(Keys.W))
+                    {
+                        BallMovementSpeed -= 10;
+                        jumpCount++;
+                    }
                 }
             }
             else 
             {
-                if (keyboardState.IsKeyDown(Keys.S))
+                if (!gameWin)
                 {
-                    BallMovementSpeed += 1;
+                    jumpCounter++;
+                    if (keyboardState.IsKeyDown(Keys.S))
+                    {
+                        BallMovementSpeed += 2;
+                    }
                 }
             }
-            if (jumpCount == 1 && keyboardState.IsKeyDown(Keys.W))
+            if (!gameWin)
             {
-                if (jumpCounter >= 8)
+                if (jumpCount == 1 && keyboardState.IsKeyDown(Keys.W))
                 {
-                    BallMovementSpeed -= 7;
-                    jumpCount++;
+                    if (jumpCounter >= 8)
+                    {
+                        BallMovementSpeed -= 10;
+                        jumpCount++;
+                    }
                 }
             }
-
             
         }
         public void MoveGround() 
@@ -343,20 +496,24 @@ namespace GameStateManagement
             ScreenManager.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             ScreenManager.GraphicsDevice.BlendState = BlendState.Opaque;
 
-        
+            
 
             // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
+            if (fadeCounter <= 5)
+            {
+                spriteBatch.DrawString(teleFont, objectiveString, new Vector2(((ScreenWidth / 2) - teleFont.MeasureString(objectiveString).X / 2), ScreenHeight / 4), Color.White);
+            }
             if (gameReady)
             {
                 for (int i = 0; i < BackgroundPos.Length; i++)
                 {
                     spriteBatch.Draw(GameBack, new Rectangle((int)BackgroundPos[i].X, (int)BackgroundPos[i].Y, ScreenWidth, ScreenHeight), Color.White);
                 }
-                spriteBatch.Draw(TBall,new Vector2(PlayerBallPos.X,PlayerBallPos.Y),null,
-                                Color.White,rotationValue,new Vector2(TBall.Width/2,TBall.Height/2),0.5f,SpriteEffects.None,0);
+                spriteBatch.Draw(TBall[0], new Vector2(PlayerBallPos.X, PlayerBallPos.Y), null,
+                                Color.White, rotationValue, new Vector2(TBall[0].Width / 2, TBall[0].Height / 2), 0.5f, SpriteEffects.None, 0);
                 for (int i = 0; i < GroundBlockPos.Length; i++)
                 {
                     //Added Math.Truncate with its screen ratios to make the textures scale appropriately to the game screen
@@ -365,6 +522,21 @@ namespace GameStateManagement
                 for (int i = 0; i < NeedlePos.Length; i++) 
                 {
                     spriteBatch.Draw(EnemyNeedle, new Rectangle((int)NeedlePos[i].X, (int)NeedlePos[i].Y, EnemyNeedle.Width, EnemyNeedle.Height), Color.White);
+                }
+                
+                spriteBatch.DrawString(spriteFont, LivesText , new Vector2(ScreenWidth / 12, ScreenHeight / 10), Color.White);
+                spriteBatch.Draw(TBall[3], new Vector2((ScreenWidth / 12) + spriteFont.MeasureString(LivesText).X, ScreenHeight / 10), null, Color.White, 0.0f, Vector2.Zero, 0.15f, SpriteEffects.None, 0);
+                spriteBatch.Draw(TBall[2], new Vector2((ScreenWidth / 12) + spriteFont.MeasureString(LivesText).X + 30, ScreenHeight / 10), null, Color.White, 0.0f, Vector2.Zero, 0.15f, SpriteEffects.None, 0);
+                spriteBatch.Draw(TBall[1], new Vector2((ScreenWidth / 12) + spriteFont.MeasureString(LivesText).X + 60, ScreenHeight / 10), null, Color.White, 0.0f, Vector2.Zero, 0.15f, SpriteEffects.None, 0);
+                spriteBatch.DrawString(spriteFont,"Your Time:"+ time, new Vector2((ScreenWidth / 12) * 9, ScreenHeight / 10), Color.White);
+                spriteBatch.DrawString(spriteFont, fpsString, new Vector2(300, 300), Color.White);
+                if (hitCheck) 
+                {
+                    spriteBatch.DrawString(spriteFont, "-1", Minus1Pos, Color.White);
+                }
+                if (gameWin) 
+                {
+                    spriteBatch.Draw(TLadyBall,LadyBallPos,Color.White);
                 }
             }
             //spriteBatch.DrawString(ScreenManager.Font, "Insert Gameplay Here", new Vector2(100, 100), Color.DarkRed);

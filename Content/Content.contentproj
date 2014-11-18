@@ -30,6 +30,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LifeOfBalls.xap">
+      <Name>LifeOfBalls</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
     <Compile Include="menufont.spritefont">
       <Name>menufont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -102,10 +107,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LifeOfBalls.xap">
-      <Name>LifeOfBalls</Name>
-      <Importer>XactImporter</Importer>
-      <Processor>XactProcessor</Processor>
+    <Compile Include="Girl_Ball.png">
+      <Name>Girl_Ball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TeleSpriteFont.spritefont">
+      <Name>TeleSpriteFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

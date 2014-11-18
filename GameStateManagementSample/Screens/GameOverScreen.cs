@@ -75,7 +75,6 @@ namespace GameStateManagement
 
         void OnRestart(object sender, PlayerIndexEventArgs e)
         {
-
             LoadingScreen.Load(ScreenManager, false, ControllingPlayer, new BackgroundScreen(), new GameplayScreen());
             ExitScreen();
         }

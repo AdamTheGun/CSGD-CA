@@ -29,6 +29,7 @@ namespace GameStateManagement
         List<MenuEntry> menuEntries = new List<MenuEntry>();
         int selectedEntry = 0;
         string menuTitle;
+        bool isSound;
 
         #endregion
 
@@ -44,6 +45,11 @@ namespace GameStateManagement
             get { return menuEntries; }
         }
 
+        public bool IsSound
+        {
+            get { return isSound; }
+            set { isSound = value; }
+        }
 
         #endregion
 
@@ -59,6 +65,8 @@ namespace GameStateManagement
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
+            isSound = true;
         }
 
 

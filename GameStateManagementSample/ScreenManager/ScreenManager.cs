@@ -43,6 +43,8 @@ namespace GameStateManagement
 
         bool traceEnabled;
 
+        bool isSound;
+
         #endregion
 
         #region Properties
@@ -78,6 +80,13 @@ namespace GameStateManagement
             get { return traceEnabled; }
             set { traceEnabled = value; }
         }
+
+        public bool IsSound
+        {
+            get { return isSound; }
+            set { isSound = value; }
+        }
+
 
         public Rectangle WindowRect 
         {
@@ -124,6 +133,8 @@ namespace GameStateManagement
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = content.Load<SpriteFont>("menufont");
             blankTexture = content.Load<Texture2D>("blank");
+
+            isSound = true;
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)
