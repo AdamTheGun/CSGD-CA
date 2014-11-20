@@ -56,10 +56,12 @@ namespace GameStateManagement
             screenManager = new ScreenManager(this);
 
             screenManager.WindowRect = new Rectangle(0,0,graphics.PreferredBackBufferWidth,graphics.PreferredBackBufferHeight);
+            
             Components.Add(screenManager);
 
             // Activate the first screens.
             screenManager.AddScreen(new BackgroundScreen(), null);
+            
             screenManager.AddScreen(new MainMenuScreen(), null);
         }
 

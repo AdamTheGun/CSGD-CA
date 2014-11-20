@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Audio;
 #endregion
 
 namespace GameStateManagement
@@ -36,20 +37,26 @@ namespace GameStateManagement
 
         SpriteBatch spriteBatch;
         SpriteFont font;
+        SpriteFont teleFont;
         Texture2D blankTexture;
         Rectangle windowRect;
+        Rectangle titleSafeArea;
 
         bool isInitialized;
 
         bool traceEnabled;
 
-        bool isSound;
+        bool isSound=true;
 
+        bool isVibrate;
+
+        bool isFirstGame;
+        
+        AudioEngine audioEngine;
+        SoundBank soundBank;
+        WaveBank waveBank;
         #endregion
-
         #region Properties
-
-
         /// <summary>
         /// A default SpriteBatch shared by all the screens. This saves
         /// each screen having to bother creating their own local instance.
@@ -58,7 +65,40 @@ namespace GameStateManagement
         {
             get { return spriteBatch; }
         }
+        public AudioEngine AudioEngine
+        {
+            get { return audioEngine; }
+            set { audioEngine = value; }
+        }
 
+        public bool IsVibrate
+        {
+            get { return isVibrate; }
+            set { isVibrate = value; }
+        }
+
+        public SoundBank SoundBank
+        {
+            get { return soundBank; }
+            set { soundBank = value; }
+        }
+
+        public Rectangle TitleSafeArea 
+        {
+            get { return titleSafeArea; }
+            set { titleSafeArea = value; }
+        }
+
+        public bool IsFirstGame
+        {
+            get { return isFirstGame; }
+            set { isFirstGame = value; }
+        }
+        public WaveBank WaveBank
+        {
+            get { return waveBank; }
+            set { waveBank = value; }
+        }
 
         /// <summary>
         /// A default font shared by all the screens. This saves
@@ -69,6 +109,10 @@ namespace GameStateManagement
             get { return font; }
         }
 
+        public SpriteFont TeleFont
+        {
+            get { return teleFont; }
+        }
 
         /// <summary>
         /// If true, the manager prints out a list of all the screens
@@ -108,6 +152,7 @@ namespace GameStateManagement
             // we must set EnabledGestures before we can query for them, but
             // we don't assume the game wants to read them.
             TouchPanel.EnabledGestures = GestureType.None;
+            
         }
 
 
@@ -117,7 +162,13 @@ namespace GameStateManagement
         public override void Initialize()
         {
             base.Initialize();
-
+            isSound = true;
+            isFirstGame = false;
+            audioEngine = new AudioEngine("Content\\LifeOfBalls.xgs");
+            waveBank = new WaveBank(audioEngine, "Content\\Wave Bank.xwb");
+            soundBank = new SoundBank(audioEngine, "Content\\Sound Bank.xsb");
+            isVibrate = true;
+            titleSafeArea = GraphicsDevice.Viewport.TitleSafeArea;
             isInitialized = true;
         }
 
@@ -131,11 +182,11 @@ namespace GameStateManagement
             ContentManager content = Game.Content;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = content.Load<SpriteFont>("menufont");
+            font = content.Load<SpriteFont>("gameFont");
+            teleFont = content.Load<SpriteFont>("TeleSpriteFont");
             blankTexture = content.Load<Texture2D>("blank");
 
-            isSound = true;
-
+            
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)
             {

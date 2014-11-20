@@ -116,7 +116,25 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\x86\Debug\Content\TeleSpriteFont.xnb</Output>
-      <Time>2014-11-17T20:58:47.871827+08:00</Time>
+      <Time>2014-11-20T10:48:27.9240649+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Instructions.png</Source>
+      <Name>Instructions</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\x86\Debug\Content\Instructions.xnb</Output>
+      <Time>2014-11-19T14:31:46.1697555+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Heart.png</Source>
+      <Name>Heart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\x86\Debug\Content\Heart.xnb</Output>
+      <Time>2014-11-20T19:10:22.4983989+08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

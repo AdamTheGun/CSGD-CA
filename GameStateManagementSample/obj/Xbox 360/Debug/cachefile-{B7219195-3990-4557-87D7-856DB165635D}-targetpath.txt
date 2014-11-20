@@ -9,6 +9,9 @@ Content\Needle.xnb
 Content\BallPop.xnb
 Content\menufont.xnb
 Content\gamefont.xnb
+Content\Girl_Ball.xnb
+Content\Instructions.xnb
+Content\TeleSpriteFont.xnb
 Content\LifeOfBalls.xgs
 Content\Wave Bank.xwb
 Content\Sound Bank.xsb

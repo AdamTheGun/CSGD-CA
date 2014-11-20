@@ -100,6 +100,33 @@
       <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\Xbox 360\Debug\Content\gamefont.xnb</Output>
       <Time>2014-10-23T10:36:27.9681153+08:00</Time>
     </Item>
+    <Item>
+      <Source>Girl_Ball.png</Source>
+      <Name>Girl_Ball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\Xbox 360\Debug\Content\Girl_Ball.xnb</Output>
+      <Time>2014-11-17T20:45:23.6637164+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Instructions.png</Source>
+      <Name>Instructions</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\Xbox 360\Debug\Content\Instructions.xnb</Output>
+      <Time>2014-11-19T14:31:46.1697555+08:00</Time>
+    </Item>
+    <Item>
+      <Source>TeleSpriteFont.spritefont</Source>
+      <Name>TeleSpriteFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\user\Desktop\Singapore Polytechnic\Year 2(Current)\Semester 2(Current)\CSGD\CSGD CA1\GameStateManagementSample\bin\Xbox 360\Debug\Content\TeleSpriteFont.xnb</Output>
+      <Time>2014-11-20T10:48:27.9240649+08:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID Null="true" />

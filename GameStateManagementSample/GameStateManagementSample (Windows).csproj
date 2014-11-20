@@ -70,17 +70,18 @@
     <Compile Include="ScreenManager\GameScreen.cs" />
     <Compile Include="ScreenManager\InputState.cs" />
     <Compile Include="ScreenManager\ScreenManager.cs" />
-    <Compile Include="Screens\BackgroundScreen.cs" />
-    <Compile Include="Screens\GameOverScreen.cs" />
-    <Compile Include="Screens\GameplayScreen.cs" />
-    <Compile Include="Screens\LoadingScreen.cs" />
-    <Compile Include="Screens\MainMenuScreen.cs" />
-    <Compile Include="Screens\MenuEntry.cs" />
-    <Compile Include="Screens\MenuScreen.cs" />
-    <Compile Include="Screens\MessageBoxScreen.cs" />
-    <Compile Include="Screens\OptionsMenuScreen.cs" />
-    <Compile Include="Screens\PauseMenuScreen.cs" />
-    <Compile Include="Screens\PlayerIndexEventArgs.cs" />
+    <Compile Include="Properties\Screens\BackgroundScreen.cs" />
+    <Compile Include="Properties\Screens\WinScreen.cs" />
+    <Compile Include="Properties\Screens\GameOverScreen.cs" />
+    <Compile Include="Properties\Screens\GameplayScreen.cs" />
+    <Compile Include="Properties\Screens\LoadingScreen.cs" />
+    <Compile Include="Properties\Screens\MainMenuScreen.cs" />
+    <Compile Include="Properties\Screens\MenuEntry.cs" />
+    <Compile Include="Properties\Screens\MenuScreen.cs" />
+    <Compile Include="Properties\Screens\MessageBoxScreen.cs" />
+    <Compile Include="Properties\Screens\OptionsMenuScreen.cs" />
+    <Compile Include="Properties\Screens\PauseMenuScreen.cs" />
+    <Compile Include="Properties\Screens\PlayerIndexEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

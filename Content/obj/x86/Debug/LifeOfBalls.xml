@@ -9,8 +9,8 @@
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
     Compression Preset Name = &lt;none&gt;;
-    Bank Last Revised Low = 1191086797;
-    Bank Last Revised High = 30409325;
+    Bank Last Revised Low = 1386973927;
+    Bank Last Revised High = 30409910;
 
     Wave
     {
@@ -354,6 +354,75 @@
             File Type = 1;
             Last Modified Low = 3362688256;
             Last Modified High = 30005739;
+        }
+    }
+
+    Wave
+    {
+        Name = Jump-SnottyBoy;
+        File = Jump-SnottyBoy.wav;
+        Build Settings Last Modified Low = 1109817522;
+        Build Settings Last Modified High = 30409660;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 11025;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 16096;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 720568260;
+            Last Modified High = 30409660;
+        }
+    }
+
+    Wave
+    {
+        Name = WinMusic;
+        File = SoundLab\Audio\WinMusic.wav;
+        Build Settings Last Modified Low = 2033256597;
+        Build Settings Last Modified High = 30409661;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 678828;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2738108880;
+            Last Modified High = 30388141;
+        }
+    }
+
+    Wave
+    {
+        Name = Kiss_SFX;
+        File = Kiss_SFX.wav;
+        Build Settings Last Modified Low = 184740277;
+        Build Settings Last Modified High = 30409910;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 46080;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2004933244;
+            Last Modified High = 30409909;
         }
     }
 }
