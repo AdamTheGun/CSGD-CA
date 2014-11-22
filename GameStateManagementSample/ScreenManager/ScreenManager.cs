@@ -42,6 +42,9 @@ namespace GameStateManagement
         Rectangle windowRect;
         Rectangle titleSafeArea;
 
+        float splashCounter = 0.0f;
+        float deltaTime = 0.0f;
+
         bool isInitialized;
 
         bool traceEnabled;
@@ -51,7 +54,10 @@ namespace GameStateManagement
         bool isVibrate;
 
         bool isFirstGame;
-        
+
+        bool isControls;
+
+        bool isCredits;
         AudioEngine audioEngine;
         SoundBank soundBank;
         WaveBank waveBank;
@@ -69,6 +75,24 @@ namespace GameStateManagement
         {
             get { return audioEngine; }
             set { audioEngine = value; }
+        }
+
+        public float SplashCounter
+        {
+            get { return splashCounter; }
+            set { splashCounter = value; }
+        }
+
+        public bool IsControls
+        {
+            get { return isControls; }
+            set { isControls = value; }
+        }
+
+        public bool IsCredits
+        {
+            get { return isCredits; }
+            set { isCredits = value; }
         }
 
         public bool IsVibrate
@@ -168,10 +192,13 @@ namespace GameStateManagement
             waveBank = new WaveBank(audioEngine, "Content\\Wave Bank.xwb");
             soundBank = new SoundBank(audioEngine, "Content\\Sound Bank.xsb");
             isVibrate = true;
+            isControls = false;
+            isCredits = false;
             titleSafeArea = GraphicsDevice.Viewport.TitleSafeArea;
             isInitialized = true;
         }
 
+        
 
         /// <summary>
         /// Load your graphics content.
@@ -185,7 +212,6 @@ namespace GameStateManagement
             font = content.Load<SpriteFont>("gameFont");
             teleFont = content.Load<SpriteFont>("TeleSpriteFont");
             blankTexture = content.Load<Texture2D>("blank");
-
             
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)
@@ -221,6 +247,9 @@ namespace GameStateManagement
             // Read the keyboard and gamepad.
             input.Update();
 
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            splashCounter += 1 * deltaTime;
             // Make a copy of the master screen list, to avoid confusion if
             // the process of updating one screen adds or removes others.
             screensToUpdate.Clear();
@@ -291,6 +320,7 @@ namespace GameStateManagement
                 if (screen.ScreenState == ScreenState.Hidden)
                     continue;
 
+                
                 screen.Draw(gameTime);
             }
         }

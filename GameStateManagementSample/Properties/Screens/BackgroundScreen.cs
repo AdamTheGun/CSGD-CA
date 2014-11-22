@@ -27,6 +27,10 @@ namespace GameStateManagement
 
         ContentManager content;
         Texture2D backgroundTexture;
+        Texture2D TControls;
+        Texture2D TBackground;
+        Texture2D TLogo;
+        Texture2D TCredits;
 
         #endregion
 
@@ -54,8 +58,11 @@ namespace GameStateManagement
         {
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
-
+            TControls = content.Load<Texture2D>("360_Controls");
             backgroundTexture = content.Load<Texture2D>("background");
+            TBackground = content.Load<Texture2D>("background");
+            TLogo = content.Load<Texture2D>("Studio-Logo");
+            TCredits = content.Load<Texture2D>("Credits");
         }
 
 
@@ -84,6 +91,22 @@ namespace GameStateManagement
                                                        bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
+            if (ScreenManager.IsControls)
+            {
+                TBackground = TControls;
+            }
+            else if (ScreenManager.SplashCounter <= 3) 
+            {
+                TBackground = TLogo;
+            }
+            else if (ScreenManager.IsCredits) 
+            {
+                TBackground = TCredits;
+            }
+            else
+            {
+                TBackground = backgroundTexture;
+            }
         }
 
 
@@ -98,7 +121,7 @@ namespace GameStateManagement
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(backgroundTexture, fullscreen,
+            spriteBatch.Draw(TBackground, fullscreen,
                              new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
 
             spriteBatch.End();

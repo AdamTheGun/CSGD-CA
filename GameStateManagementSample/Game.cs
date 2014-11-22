@@ -26,8 +26,8 @@ namespace GameStateManagement
 
         GraphicsDeviceManager graphics;
         ScreenManager screenManager;
-
-
+        bool isMainMenu = false;
+        
         // By preloading any assets used by UI rendering, we avoid framerate glitches
         // when they suddenly need to be loaded in the middle of a menu transition.
         static readonly string[] preloadAssets =
@@ -62,7 +62,6 @@ namespace GameStateManagement
             // Activate the first screens.
             screenManager.AddScreen(new BackgroundScreen(), null);
             
-            screenManager.AddScreen(new MainMenuScreen(), null);
         }
 
 
@@ -89,7 +88,14 @@ namespace GameStateManagement
         protected override void Draw(GameTime gameTime)
         {
             graphics.GraphicsDevice.Clear(Color.Black);
-            
+            if (screenManager.SplashCounter >= 3)
+            {
+                if (!isMainMenu)
+                {
+                    screenManager.AddScreen(new MainMenuScreen(), PlayerIndex.One);
+                    isMainMenu = true;
+                }
+            }
             // The real drawing happens inside the screen manager component.
             base.Draw(gameTime);
         }

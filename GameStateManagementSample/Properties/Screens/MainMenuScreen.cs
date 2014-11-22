@@ -25,22 +25,31 @@ namespace GameStateManagement
         /// Constructor fills in the menu contents.
         /// </summary>
         public MainMenuScreen()
-            : base("A Ball's Life")
+            : base("Life Of Balls")
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
+            MenuEntry controlsMenuEntry = new MenuEntry("Controls");
+            MenuEntry creditsMenuEntry = new MenuEntry("Credits");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
+            controlsMenuEntry.Selected += controlsMenuEntrySelected;
+            creditsMenuEntry.Selected += creditsMenuEntrySelected;
             exitMenuEntry.Selected += OnCancel;
+
+            
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
+            MenuEntries.Add(controlsMenuEntry);
+            MenuEntries.Add(creditsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
+            
         }
 
 
@@ -67,6 +76,19 @@ namespace GameStateManagement
         {
             ScreenManager.SoundBank.GetCue("UI Click").Play();
             ScreenManager.AddScreen(new OptionsMenuScreen(),PlayerIndex.One);
+        }
+
+        void controlsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            ScreenManager.SoundBank.GetCue("UI Click").Play();
+            ScreenManager.IsControls = true;
+            ScreenManager.AddScreen(new ControlsScreen(), PlayerIndex.One);
+        }
+        void creditsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            ScreenManager.SoundBank.GetCue("UI Click").Play();
+            ScreenManager.IsCredits = true;
+            ScreenManager.AddScreen(new CreditsScreen(), PlayerIndex.One);
         }
 
 

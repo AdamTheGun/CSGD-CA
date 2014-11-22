@@ -41,9 +41,16 @@ namespace GameStateManagement
         /// Gets the list of menu entries, so derived classes can add
         /// or change the menu contents.
         /// </summary>
+        /// 
         protected IList<MenuEntry> MenuEntries
         {
             get { return menuEntries; }
+        }
+
+        public string MenuTitle
+        {
+            get { return menuTitle; }
+            set { menuTitle = value; }
         }
 
         public SoundBank SoundBank

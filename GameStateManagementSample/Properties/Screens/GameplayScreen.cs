@@ -507,7 +507,7 @@ namespace GameStateManagement
                 if (!gameWin)
                 {
                     jumpCounter++;
-                    if (jumpCount == 0 && keyboardState.IsKeyDown(Keys.W))//gamePadState.IsButtonDown(Buttons.A))
+                    if (jumpCount == 0 && gamePadState.IsButtonDown(Buttons.A))
                     {
                         BallMovementSpeed -= 10;
                         if (isSound)
@@ -523,7 +523,7 @@ namespace GameStateManagement
                 if (!gameWin)
                 {
                     jumpCounter++;
-                    if (keyboardState.IsKeyDown(Keys.S))//gamePadState.IsButtonDown(Buttons.B))
+                    if (gamePadState.IsButtonDown(Buttons.B))
                     {
                         BallMovementSpeed += 2;
                     }
@@ -531,7 +531,7 @@ namespace GameStateManagement
             }
             if (!gameWin)
             {
-                if (jumpCount == 1 && keyboardState.IsKeyDown(Keys.W))//gamePadState.IsButtonDown(Buttons.A))
+                if (jumpCount == 1 && gamePadState.IsButtonDown(Buttons.A))
                 {
                     if (jumpCounter >= 8)
                     {
